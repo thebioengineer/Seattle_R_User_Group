@@ -1,0 +1,383 @@
+---
+title: "Seattle R Users Meetup"
+author: "Ellis Hughes"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+class: center, middle
+
+# Seattle R Users
+
+#### Thank you Axio Research for providing the space for our meetup today
+
+---
+# Tonights Agenda
+
+- 7-7:15  -Setup
+
+- 7:15-8  -Intro To R and Visualization
+
+- 8-8:30  -Networking
+
+- 8:30 and beyond - Continue your conversations as you wish!
+
+---
+# Tonights Goals
+
+- For those of you new to R:
+  - Learn some basics in R
+  - Be able to generate a Visualization
+  
+- For you intermediate to advanced Folk:
+  - Hopefully learn something new
+  - Re-learn something you thought you knew
+  - I promise to have more advanced topics in the future
+  
+  - Tonights dataset can be found [github.com/SeattleRUsers/July_2018](github.com/SeattleRUsers/July_2018)
+
+
+---
+# Getting Started
+
+- Install the latest version of R onto your computer from R-project.org at: [https://cloud.r-project.org/](https://cloud.r-project.org/).
+
+- To make things easier, download the RStudio IDE from Rstudio at : [https://www.rstudio.com/products/rstudio/download/#download](https://www.rstudio.com/products/rstudio/download/#download)
+
+
+---
+
+# Hello World
+
+#### What in the world is an R?
+- A statistical computing language, based off of S
+- Free and Open Source Software
+
+- Has a massive and inclusive community driving the development of software based on R in a variety of fields
+
+#### Getting started
+- double click on the RStudio Symbol to open the IDE
+.center[img[blue circle with a white "R"](http://www.i-programmer.info/images/stories/News/2011/MARCH/rstudio_logo_0211.png)]
+
+---
+
+# #GOALS
+
+By the end of this intro, you will have the ability to take a raw dataset we provide you, and be able to generate a beautiful plot like this:
+
+![](July_Presentation_files/figure-html/function_junction-1.png)
+
+---
+# Welcome to the Jungle
+
+---
+
+# R
+
+R is what is known as an "Object Oriented" language. That means that everything in R is an object, and has very specific properties and behaviors. An object type is also known as a "class".
+
+```{r Objects, eval=FALSE}
+
+#Lowest Level Objects
+TRUE #BOOLEANS (LOGICAL) - TRUE or FALSE
+1 # INTEGER - A number with no decimals
+1.1 # NUMERIC - A number with the ability to have decimals
+"HELLO WORLD" #CHARACTER (STRING) - words or numbers within quotes
+
+```
+
+---
+
+# R
+
+- Value assignment is done through `=` or `<-`.
+
+- Most coding standards and conventions prefer the `<-` assignment as it makes it clear that you are setting the value on the left to be the result of the value on the right.
+
+```{r ObjectsAssignment}
+
+#Lowest Level Objects
+BOOLEAN<-TRUE #TRUE or FALSE
+INTEGER<-1 # A number with no decimals
+NUMERIC<-1.1 # a number with the ability to have decimals
+CHARACTER<-"HELLO WORLD" # words
+
+equals=42 #valid, though not preferred
+
+```
+---
+
+# Objects in Objects
+
+Using the building blocks of those four object types, we have another set of classes that can hold those 4 basic object types.
+
+```{r Objects_in_Objects}
+
+# Vectors hold other objects, but they all must be of the same type
+VECTORS_BOOLEAN<-c(TRUE,TRUE,FALSE) 
+VECTORS_NUMERIC<-c(1,2.5,3.14159267834)
+VECTORS_CHARACTER<-c("THIS","is","A","Character","Vector")
+
+# Matrixes hold other objects of the same type as well,
+#  but in more of a spread sheet type fasion
+MATRIX_BOOLEAN<-matrix(c(1,2,3,4,5,6,7,8,9),nrow = 3)
+
+# data.frames are like matrixes, but the difference 
+#  is each column can hold a different object type
+DATA.FRAME <- data.frame(BOOLEANS=c(TRUE,TRUE,FALSE),
+                         NUMERICS=c(132.4,56.7,89),
+                         CHARACTER=c("THIS","IS A","DATA.FRAME!"))
+
+```
+---
+
+# Objects in Objects 2.1
+
+To access the data stored in these objects we typically use paired "square braces": [ ]
+
+```{r Objects_in_Objects2}
+
+# Vectors only have one dimension, so you extract
+# using one value put into the square braces:
+VECTORS_BOOLEAN[1]
+
+
+# Matrixes and data.frames have two dimensions;
+#  rows and columns, so you use potentially two entries to extract them:
+MATRIX_BOOLEAN[1,1]
+
+# But you can also leave one of the entries blank
+#  to signify you are getting all rows or columns:
+
+MATRIX_BOOLEAN[1,] #all columns of row 1
+MATRIX_BOOLEAN[,1] #all rows of column 1
+
+```
+
+---
+
+# Function Junction
+
+In addition to Objects, in R there are "functions". They act on the objects we give them and return a modified object!
+
+```{r function_junction}
+
+#Mathematical Operations (add, subtract, multiply, divide, ...)
+add <- 2+2
+subtract <- 10-2
+multiply <- 2*5
+divide <- 20/6
+```
+
+---
+
+# Function Junction 1.2
+
+```{r function_junction_1_2}
+#built in functions
+
+corr_matrix<-cor(x=data.frame(var1=c(1,2,3,4,5,6),
+                              var2=c(4,5,6,7,8,9),
+                              var3=c(11,9,7,5,3,1)))
+#if you ever have any questions about a function,
+#  type ? then the name of the function: ?cor 
+#  This will bring up the help page for the "cor" function
+corr_matrix
+```
+---
+
+# Function Junction 1.3 - Control Structures
+
+```{r function_junction_1_3, eval=FALSE}
+
+for(value in c(1,2,3,4,5)){
+  #do a thing
+  cat(value)
+}
+
+if(1==1){
+  #do a thing if true
+}else if(2==2){
+  #do a thing if this is true  
+}else{
+  #do a thing if above statements are false
+}
+
+while(value is true){
+  #do a thing that alters value
+}
+
+
+```
+
+---
+# Function Junction 1.4 - Graphics
+
+```{r function_junction_1_4}
+
+plot(data.frame(x=c(1,2,3,4,5,6),y=c(4,5,6,7,8,9)))
+
+```
+
+---
+
+
+
+
+# Function Junction 2: Packages
+
+Functions I just showed you are built into R, but sometimes you need to do something more advanced. 
+you could:
+  
+  - a) create by yourself the entire complex algorithm, have to debug when new versions of R come out, ensure consistency, spend more time making sure your function works as it should than using it
+  
+  - b) copy someones code
+
+R has something called the "Comprehensive R Archive Network" (CRAN) where very smart people that enjoy writing out very useful functions and then putting them online where they are available for everyone. The way you get to that is actually pretty straight-forward too!
+
+More than likely, someone has created a package to do whatever you are trying to do. Take a quick google search to see if it does.   - The CRAN has over 12649 at of June 25th, and grows every day.
+
+---
+
+# Function Junction 2.2: Packages
+
+```{r function_junction_packages_show, eval=FALSE}
+#install.package("ggplot2")
+library(ggplot2)
+ggplot(data.frame(x=c(1,2,3,4,5,6),
+                  y=c(4,5,6,7,8,9)))+
+  geom_point(
+    aes(x=x,y=y,
+        color=as.factor(x),
+        shape=as.factor(y)))+
+ggtitle("This is such a B-e-a-utiful plot")
+
+```
+
+---
+
+# Function Junction 2.2: Packages
+
+```{r function_junction_packages_show_plot, echo=FALSE}
+#install.package("ggplot2")
+library(ggplot2)
+ggplot(data.frame(x=c(1,2,3,4,5,6),
+                  y=c(4,5,6,7,8,9)))+
+  geom_point(
+    aes(x=x,y=y,
+        color=as.factor(x),
+        shape=as.factor(y)))+
+ggtitle("This is such a B-e-a-utiful plot")
+
+```
+
+---
+
+# Getting Data into R
+
+-That is all fine and dandy, but how do I get my data from a CSV or excel spreadsheet into my R session?? 
+  - Am I supposed to type it all in, that seems like a waste of time!
+  
+-whole families of functions are written to import data into R!
+  - usually start with "read":
+    - base R has "read.table","read.csv","read.tsv", etc
+    - additional packages open up additional ways to read in files:
+        -openxlsx adds the "read.xlsx" function to read excel files
+
+
+
+```{r data_import}
+
+# download.file("https://raw.githubusercontent.com/fivethirtyeight/data/master/births/US_births_2000-2014_SSA.csv","US_births_2000-2014_SSA.csv",method = "libcurl")
+
+# read.csv reads in the csv file from our computer
+# we tell it that the file has a "header", and
+# to make all values that are not numeric, characters
+usBirths<-read.csv("US_births_2000-2014_SSA.csv",
+                   header = TRUE,
+                   stringsAsFactors = FALSE)
+
+```
+
+---
+
+# All about Analysis
+
+```{r data_look}
+head(usBirths)
+str(usBirths)
+```
+
+
+---
+
+#TidyVerse & TidyData
+
+- Hadley Wickham's brainchild
+- makes reading and using functions very straight-forward
+
+- a series of packages that contain functions to make data handling easy and understandable
+- the core is the "pipe"-ing function = '%>%'
+
+```{r tidy or not to tidy}
+#install.packages("tidyverse")
+library(tidyverse)
+
+usBirths%>%
+  str
+
+```
+
+Note that the output is identical to the original 'str(usBirths')
+
+---
+
+#Analysis Alley
+
+We will now start the actual analysis. I will explain every step of the way, but let me know if I go too fast!
+
+First, a hypothesis: There are more births on weekends than weekdays. 
+
+```{r}
+
+usBirths_weekend<-usBirths%>%
+  mutate(Weekend=day_of_week==1 | day_of_week==7)# this adds a column to the data
+
+head(usBirths_weekend)
+
+```
+
+---
+
+#Analysis Alley
+
+Great, you are on your way!
+
+```{r, eval=FALSE}
+
+#could do:
+for(rowID)
+
+head(usBirths_weekend)
+
+```
+
+---
+
+Missing slides on additional analysis
+
+---
+
+In summary, thank you all so much for being here!
+
+
+---
+
