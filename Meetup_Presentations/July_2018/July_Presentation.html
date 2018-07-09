@@ -43,29 +43,34 @@ class: center, middle, inverse, title-slide
   - Re-learn something you thought you knew
   - I promise to have more advanced topics in the future
   
-  - Tonights dataset can be found [github.com/SeattleRUser/Meetings/July_2018/data.csv](github.com/SeattleRUser/Meetings/July_2018/data.csv)
+  - Tonight's data set can be found [github.com/fivethirtyeight/data/blob/master/births/US_births_2000-2014_SSA.csv](http://www.github.com/fivethirtyeight/data/blob/master/births/US_births_2000-2014_SSA.csv)
 
-- Meet someone new
+- Everyone
+    - Meet someone new
 
 - Start a more regular meetup schedule
 
 ---
 
-#You talkin to ME??
+#Who am I?
+.pull-left[
+###Ellis Hughes
 
-- Ellis Hughes
+  - Statistical Genetics Programmer
   
-  - R enthusiast for the past 3.5 years (but whose countin)
-  
-    - Use R in my free time for funsies
-    
-    - I use R every day for work
+      - 3.5 Years programming in R
+      - Created specialty and general packages that we use internally
+      - Support a team of biostatisticians working in Genetics
     
   - 2014 WSU Bioengineer Graduate
-    - MATLAB
-    
-  - try-lingual -&gt; I will try most any programming language
-    
+  
+      - MATLAB was the language of choice
+      - Research in Head-Neck musculoskeletal models
+]
+
+.pull-right[
+.center[![Its ME!](July_Presentation_files/Ellis_LinkedIn.jpg)]
+]
 
 ---
 # Getting Started
@@ -96,12 +101,12 @@ class: center, middle, inverse, title-slide
   - That means that everything in R is an object
   - Everything has very specific properties and behaviors
   
-- An object type is also known as a "class".
+- An object type is also known as a "class"
 
 
 ```r
 #Lowest Level Objects
-TRUE #BOOLEANS (LOGICAL) - a true or false value
+TRUE #LOGICALS (BOOLEAN) - a true or false value
      # TRUE or FALSE
 
 1 # INTEGER - A number with no decimals
@@ -118,67 +123,201 @@ TRUE #BOOLEANS (LOGICAL) - a true or false value
 
 # R
 
-- Value assignment to variables is done through `=` or `&lt;-`.
-
-- Most coding standards say to use `&lt;-`
-
+- Value assignment to variables is done through '&lt;-'.
 - Variables are representations of the values you are assigning to them
+- Variable naming can take on any form
+    - No special characters other than '_' or '.'
+    - cannot start with a number
+    - There are coding standards that dictate proper variable naming (ie. Google R standards)
 
 
 ```r
 #Lowest Level Objects
-BOOLEAN&lt;-TRUE #TRUE or FALSE
+LOGICAL&lt;-TRUE #TRUE or FALSE
 INTEGER&lt;-1 # A number with no decimals
 NUMERIC&lt;-1.1 # a number with the ability to have decimals
 CHARACTER&lt;-"HELLO WORLD" # words
-
-fortyTwo=42 #valid
 ```
+
+.footnote[You TRY:
+In your console, try creating an object named sampleObject, and assign the number 42 to it. then type 'sampleObject' into the console and press enter on your keyboard
+]
+---
+class: middle, left
+
+##You should have:
+
+
+
+```r
+sampleObject&lt;-42
+sampleObject
+```
+
+```
+## [1] 42
+```
+
 ---
 
 # Objects in Objects
 
-Using the building blocks of those four object types, we have another set of classes that can hold those 4 basic object types.
+### The next object level up are
+  - Vectors, Matrices and Data.frames
+      - Take extend the properties of the basic objects
+      - Stores what would be multiple objects to be stored in one variable
+      
+---
+
+##Vector
+
+- Vectors hold other objects
+  - in a single Dimension
+  - Objects with in the vector are of the same type
+    - Be one of the following:
+      - Logical, Integer, Numeric, or Character
+  - created with the 'c' function
 
 
 ```r
-# Vectors hold other objects, but they all must be of the same type
-# one dimensional
-VECTORS_BOOLEAN&lt;-c(TRUE,TRUE,FALSE) 
+VECTORS_LOGICAL&lt;-c(TRUE,TRUE,FALSE) 
+
 VECTORS_NUMERIC&lt;-c(1,2.5,3.14159267834)
+VECTORS_NUMERIC_SEQUENCE&lt;-c(1:10)
+
 VECTORS_CHARACTER&lt;-c("THIS","is","A","Character","Vector")
+```
 
-# Matrixes hold other objects of the same type as well,
-#  but in more of a spread sheet type fasion (2D)
-MATRIX_NUMERIC&lt;-matrix(c(1,2,3,4,5,6,7,8,9),ncol=3)
+When you print a vector, it looks like this:
 
-# data.frames are like matrixes, but the difference 
-#  is each column can hold a different object type (2D)
-DATA.FRAME &lt;- data.frame(BOOLEANS=c(TRUE,TRUE,FALSE),
-                         NUMERICS=c(132.4,56.7,89),
-                         CHARACTER=c("THIS","IS A","DATA.FRAME!"))
+
+```r
+VECTORS_CHARACTER
+```
+
+```
+## [1] "THIS"      "is"        "A"         "Character" "Vector"
 ```
 ---
+##Vector
 
-# Objects in Objects 2.1
+### Now You try:
+
+Create a vector with 5 entries, assign it to sampleVector, and print it out!
+
+--
+
+#### Example:
+
+```r
+sampleVector&lt;-c("You","can","do","this","!")
+sampleVector
+```
+
+```
+## [1] "You"  "can"  "do"   "this" "!"
+```
+
+---
+# Objects in Objects
+##Matrix
+- expansion on the vector idea
+  - contents must all the same class as well,
+  - two dimensions
+    - think of an excel spread sheet
+
+```r
+MATRIX_LOGICAL&lt;-matrix(c(TRUE,TRUE,FALSE,FALSE,TRUE,TRUE),ncol=2)
+MATRIX_NUMERIC&lt;-matrix(c(1,2,3,4,5,6,7,8,9),ncol=3)
+MATRIX_CHARACTER&lt;-matrix(c("COLUMN","ONE","HERE","THIS IS","C","2"),ncol=2)
+```
+When you print a matrix, it looks like this:
+
+```r
+MATRIX_NUMERIC
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+```
+---
+# Objects in Objects
+##Data.frame
+- Continuation of the matrix idea, with added flexibility
+  - contents of each column must the same class
+  - Different columns can have different classes though!
+
+```r
+DATA_FRAME_MIX &lt;- data.frame(LOGICAL=c(TRUE,TRUE,FALSE),
+                         NUMERIC=c(132.4,56.7,89),
+                         CHARACTER=c("THIS","IS A","DATA.FRAME!"))
+```
+When you print a data.frame, it looks like this:
+
+```r
+DATA_FRAME_MIX
+```
+
+```
+##   LOGICAL NUMERIC   CHARACTER
+## 1    TRUE   132.4        THIS
+## 2    TRUE    56.7        IS A
+## 3   FALSE    89.0 DATA.FRAME!
+```
+
+---
+##Vector
+
+### Now You try:
+
+Create a data.frame with 2 columns and 3 rows, assign it to sampleDF, and print it out!
+
+--
+
+#### Example:
+
+```r
+sampleDF&lt;-data.frame(c(TRUE,TRUE,FALSE),
+                     c(123,456,789))
+sampleDF
+```
+
+```
+##   c.TRUE..TRUE..FALSE. c.123..456..789.
+## 1                 TRUE              123
+## 2                 TRUE              456
+## 3                FALSE              789
+```
+
+---
+# Objects in Objects
 
 To access the data stored in these objects we use paired "square braces": [ ]
 
+--
+###Vectors
+- One dimension, the entry number
+    - extract using one value put into the square braces
 
 ```r
-# Vectors only have one dimension, so you extract
-# using one value put into the square braces:
-VECTORS_BOOLEAN[1]
+VECTORS_LOGICAL[1]
 ```
 
 ```
 ## [1] TRUE
 ```
+---
+# Objects in Objects
+
+### Matrices and data.frames
+- Two dimensions; rows and columns
+    - two entries to extract them contents
+
 
 ```r
-# Matrixes and data.frames have two dimensions;
-#  rows and columns, so you use potentially two
-#  entries to extract them:
 MATRIX_NUMERIC[1,1]
 ```
 
@@ -186,15 +325,24 @@ MATRIX_NUMERIC[1,1]
 ## [1] 1
 ```
 
----
+```r
+DATA_FRAME_MIX[1,1]
+```
 
-# Objects in Objects 2.1
+```
+## [1] TRUE
+```
+
+---
+# Objects in Objects
+
+### Rows or Columns Extraction for Matrices
+
+- Leaving one of the entries blank in the square braces extracts an entire row or column
+- Returns a vector of the row or column
 
 
 ```r
-# But you can also leave one of the entries blank
-#  to signify you are getting all rows or columns:
-
 MATRIX_NUMERIC[1,] #all columns of row 1
 ```
 
@@ -209,16 +357,219 @@ MATRIX_NUMERIC[,1] #all rows of column 1
 ```
 ## [1] 1 2 3
 ```
-
 ---
+# Objects in Objects
 
-# Function Junction
+### Rows or Columns Extraction for data.frames
 
-In addition to variables, in R there are "functions". They act on the objects we give them and return a modified object!
+- Leaving one of the entries blank in the square braces extracts an entire row or column
+    - Returns a data.frame that is the subset of the row or column
 
 
 ```r
-#Mathematical Operations (add, subtract, multiply, divide, ...)
+DATA_FRAME_MIX[1,] #all columns of row 1
+```
+
+```
+##   LOGICAL NUMERIC CHARACTER
+## 1    TRUE   132.4      THIS
+```
+
+```r
+DATA_FRAME_MIX[,1] #all rows of column 1
+```
+
+```
+## [1]  TRUE  TRUE FALSE
+```
+---
+#Objects in Objects
+
+###Multiple Extraction
+- entering a vector of the indexes into the square braces will subset the object by those indexes
+
+
+```r
+VECTORS_NUMERIC[2:5] #all entries 2 through 5
+```
+
+
+```r
+MATRIX_NUMERIC[1:2,] #all columns of rows 1 and 2
+MATRIX_NUMERIC[,c(1,3)] #all rows of columns 1 and 3
+```
+
+
+---
+# Objects in Objects
+
+### Assignment
+- In addition to extraction, you can assign new values to elements of vectors, matrices and data.frames
+    - specify the element(s), rows, or columns you want to replace
+    - use the assignment '&lt;-' with the new values
+--
+
+You can replace a specific entry with a value
+
+```r
+VECTORS_NUMERIC[1]&lt;-45
+MATRIX_NUMERIC[1,1]&lt;-9
+```
+--
+
+or sections
+
+```r
+VECTORS_NUMERIC[2:4]&lt;-99
+MATRIX_NUMERIC[c(1,2),c(2,3)]&lt;-20
+```
+---
+# Objects in Objects
+
+### Assignment
+This is what the MATIX_NUMERIC looks like now we have changed it's values 
+
+
+```r
+print(MATRIX_NUMERIC)
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    9   20   20
+## [2,]    2   20   20
+## [3,]    3    6    9
+```
+
+
+---
+# Objects in Objects
+
+### Naming Entries
+
+- So far we have been using indices
+    - entry 1   -&gt; [1]
+    - column 1  -&gt; [ ,1]
+    - row 1     -&gt; [1, ]
+
+- These objects can also have "names" to name the indices
+
+---
+# Objects in Objects
+
+###Vectors
+- Each vector entry can be named
+
+```r
+named_VECTOR_NUMERIC&lt;-c(Val1=1,Val2=2,Val3=3,Val4=4,Val5=5)
+print(named_VECTOR_NUMERIC)
+```
+
+```
+## Val1 Val2 Val3 Val4 Val5 
+##    1    2    3    4    5
+```
+
+---
+# Objects in Objects
+
+### Data.frames
+
+```r
+named_DF_NUMERIC&lt;-data.frame(Col1=c(1,2,3),
+                                 Col2=c(TRUE,TRUE,FALSE),
+                                 Col3=c("This","Column is","Named"),
+                                 row.names = c("Row1","Row2","Row3"),
+                                 stringsAsFactors = FALSE)
+print(named_DF_NUMERIC)
+```
+
+```
+##      Col1  Col2      Col3
+## Row1    1  TRUE      This
+## Row2    2  TRUE Column is
+## Row3    3 FALSE     Named
+```
+
+---
+# Objects in Objects
+
+### Named Extraction
+
+These names can be used for identifying which entries/rows/columns to extract
+
+
+```r
+named_VECTOR_NUMERIC["Val4"]
+```
+
+```
+## Val4 
+##    4
+```
+
+```r
+named_DF_NUMERIC[,"Col3"]
+```
+
+```
+## [1] "This"      "Column is" "Named"
+```
+
+---
+# Now You try: Extracting
+
+Enter the following into your console:
+
+```r
+set.seed(12345)
+sampleDF&lt;-data.frame(NameOne=c(1,2,3),
+                     RandomValues=runif(3),
+                     TestName=c("This","Column is","Named"),
+                     row.names = c("Row1","test1234","Row3"))
+```
+
+1. Extract the second row of sampleDF
+2. Write the number 45 to the 2nd column, 3rd row of sampleDF
+
+---
+# Now You try: Extracting
+
+### Example:
+
+
+```r
+#1
+sampleDF["test1234",] #sampleDF[2,]
+```
+
+```
+##          NameOne RandomValues  TestName
+## test1234       2    0.8757732 Column is
+```
+
+```r
+#2
+sampleDF[3,2]&lt;-45 #sampleDF["Row3","RandomValues"]&lt;-45
+print(sampleDF)
+```
+
+```
+##          NameOne RandomValues  TestName
+## Row1           1    0.7209039      This
+## test1234       2    0.8757732 Column is
+## Row3           3   45.0000000     Named
+```
+---
+# Basic Mathemetical Operations
+
+- As with most languages,
+    - Mathematical Operations include addition, subtraction, multiplication, and division
+    - Act on the objects we give them and return a modified object
+    - this is not an exhaustive list of mathematical operations built into R
+
+
+```r
 add &lt;- 2+2
 subtract &lt;- 10-2
 multiply &lt;- 2*5
@@ -226,19 +577,42 @@ divide &lt;- 20/6
 ```
 
 ---
+# Function Junction
 
-# Function Junction 1.2
+Mathematical operations are a special class of functions
+
+Most functions the following format:
+
+.center[FunctionName(argument1, argument2, ...)]
+
+Outputs of functions need to be assigned to an output variable
+
+Below is a basic format for a function call that takes a single input. If a function requires multiple inputs, they are separated by commas.
+
+.center[
+  outputVariable&lt;-functionName(argument1=inputVariable)
+]
+--
+
+When you are trying to use a function and need to understand it better type the following into your console:
 
 
 ```r
-#built in functions
+?functionName
+```
 
-corr_matrix&lt;-cor(x=data.frame(var1=c(1,2,3,4,5,6),
-                              var2=c(4,5,6,7,8,9),
-                              var3=c(11,9,7,5,3,1)))
-#if you ever have any questions about a function,
-#  type ? then the name of the function: ?cor 
-#  This will bring up the help page for the "cor" function
+---
+# Function Junction
+
+Below is an example of using the 'cor' function on an input data.frame
+
+```r
+testDF&lt;-data.frame(var1=c(1,2,3,4,5,6),
+                   var2=c(4,5,6,7,8,9),
+                   var3=c(11,9,7,5,3,1))
+
+corr_matrix&lt;-cor(testDF)
+
 corr_matrix
 ```
 
@@ -248,11 +622,169 @@ corr_matrix
 ## var2    1    1   -1
 ## var3   -1   -1    1
 ```
+
+---
+# Function Junction
+
+- Sometimes functions have multiple arguments, but you only need to input one or two of them to get them to run
+    - Additional arguments are for changing how the function runs. 
+    
+--
+
+
+- The order in which you enter the input variables is the argument it will be assigned to unless you assign the argument in the function via '=':
+
+    - function(functionArgument1=input1, functionArgument2=input2)
+    
+    
+---
+# Function Junction
+
+- For example, the cor function, if you type '?cor' shows that it has the arguments for
+    - x, y, use, and method
+
+- x is the only argument without a default value, and thus needs to be defined to run
+
+- By default, the method used is Pearson, but in order to change it to 'Spearman'
+    - you need to add 'spearman' as an input to cor
+    - use argument assignment (argumentName=input)
+
+.center[
+
+```r
+spearman_corr&lt;-cor(testDF,method='spearman')
+```
+]
+        
+
+---
+
+# Now You try: Functions
+
+Enter the following into your console:
+
+```r
+set.seed(12345)
+sampleDF&lt;-data.frame(c(1,2,3),
+                     runif(3),
+                     c(1.1,2.2,5.5))
+```
+
+- Use the 'cov' function to calculate the covariance of sampleDF using the Kendall method
+    - pro-tip: use the '?cov', and compare it to this use of 'cor':
+    
+.center[
+
+```r
+  corr_matrix&lt;-cor(testDF)
+```
+]
+
+---
+# Now You try: Functions
+
+### Example:
+
+
+```r
+cov(sampleDF, method="kendall")
+```
+
+```
+##                  c.1..2..3. runif.3. c.1.1..2.2..5.5.
+## c.1..2..3.                6        2                6
+## runif.3.                  2        6                2
+## c.1.1..2.2..5.5.          6        2                6
+```
+
 ---
 
 # Control Structures
 
-- Say you would like to use a function on several rows, or a certain number of times until a condition is met.
+- Make decisions based on looking at variables values and check if they meet certain conditions
+    - if/else if/else
+    - for
+    - while
+--
+
+- Each structure has a specific use case:
+--
+  
+  - if/else if/else
+      - run certain chunks of code based on certain conditions
+--
+
+  - for
+      - for every value input, run a chunk of code
+--
+
+  - while
+      - while this condition is met, run the chunk of code until it is not
+---
+
+# Control Structures
+
+### if/else if/else
+- will run certain chunks of code based on whether variables specified meet certain conditions
+- can connect as many or as little 'else if'/'else' to the initial 'if' as necessary to spell out all conditions
+  - will only run first chunk that is true
+
+
+```r
+controlVariable&lt;-5
+
+if(controlVariable&lt;5){
+  #  run if controlVariable is less than 5
+  print("Less than 5")
+  
+}else if(controlVariable&gt;5){
+  #  run if controlVariable is greater than than 5
+  print("Greater than 5")
+  
+}else{
+  #  run if previous two conditions are not met
+  print("Exactly 5")
+}
+```
+
+---
+# Control Structures
+
+### for
+- will repeatedly run certain chunk of code for each of the input conditions
+- good for when you know the number of times your code needs to run
+
+
+```r
+for(inputVar in 1:10){
+  print(inputVar)
+}
+```
+
+---
+# Control Structures
+
+### while
+- will repeatedly run certain chunk of code until the condition is false
+- good for when you do not the number of times your code needs to run
+
+
+```r
+inputVar&lt;-10
+
+while(inputVar&gt;0 ){
+  print(inputVar)
+  inputVar&lt;-inputVar-1
+}
+```
+
+
+.footnote[ while loops sound nice, but be careful, it will run forever if the control condition is always true. this is called an infinite loop!]
+
+---
+# Control Structures
+
+### Control use case
 
 - For example, you wanted to get the total sum of each row in your data.frame. You could do something like this:
 
@@ -260,6 +792,7 @@ corr_matrix
 ```r
 dataFrameExample&lt;-data.frame(Col1=c(1,2,3,4,5,6),
                              Col2=c(7,8,9,10,11,12))
+
 dataFrameSums&lt;-c(NA,NA,NA,NA,NA,NA)
 
 dataFrameSums[1]&lt;-sum(dataFrameExample[1,])
@@ -297,31 +830,26 @@ dataFrameSums[6]&lt;-sum(dataFrameExample[6,])
 
 ---
 
-# Control Structures - Avoid the copy and paste
+# Now You try: Control Structures
+
+Enter the following into your console:
 
 
 ```r
-for(value in c(1,2,3,4,5)){
-  #do a thing
-  cat(value)
-}
+dataFrameExample&lt;-data.frame(Col1=c(1,2,3,4,5,6),
+                             Col2=c(7,8,9,10,11,12))
 
-if(1==1){
-  #do a thing if true
-}else if(2==2){
-  #do a thing if this is true  
-}else{
-  #do a thing if above statements are false
-}
-
-while(value is true){
-  #do a thing that alters value
-}
+dataFrameSums&lt;-c(NA,NA,NA,NA,NA,NA)
 ```
 
----
+calculate the sum of each row of dataFrameExample using control structures and the 'sum' function. Write it to the dataFrameSums vector.
+    
 
-# Control Structures - Use the For(ce), Luke
+---
+# Now You try: Control Structures
+##Use the For(ce), Luke
+
+### Example:
 
 
 ```r
@@ -341,26 +869,72 @@ dataFrameSums
 ```
 ## [1]  8 10 12 14 16 18
 ```
+---
+class: center
+
+##Congratulations, we have now covered most of what you need to know for basic data manipulations. We are now going to get into how you get your data into/outof R, extending R, and finally how you can visualize your data and analysis!
 
 ---
-# Graphics - you are what you see
 
+# Data Import
+
+- Data manipulation is great, but only if you have data to work on
+  
+- Good thing is a family of functions are written to import data into R!
+    - base R has "read.table","read.csv","read.tsv",...
+    - these functions will read and convert the data into a data.frame
+    - outputs must be assigned to a variable
+
+- All of these require the path to the file you will be reading in as a character
+    - for example, you had a csv file in C:\\Users\ellis\temporaryfolder\examplefile.csv
+--
+    
+    - the call to read the file in would be as follows:
+    
 
 ```r
-plot(data.frame(x=c(1,2,3,4,5,6),y=c(4,5,6,7,8,9)))
-lines(x=c(1,2,3,4,5,5,6),y=c(5,7,8,9,7,6,6),col="red")
+example&lt;-read.csv(
+  file = "C://Users/ellis/temporaryfolder/examplefile.csv",
+  header = TRUE,
+  stringsAsFactors = FALSE)
 ```
 
-![](July_Presentation_files/figure-html/function_junction_1_4-1.png)&lt;!-- --&gt;
+---
+# Data Export
+
+- complementary versions of "read" functions
+    -ie. write.table, write.csv, ...
+        - first argument input is the object to write
+        - second is the path to save to
+        
+        - warning: it will overwrite files without warning!
+  
+- In addition, R has it's own file format called RDS
+    - saving function is saveRDS
+    - reading function is readRDS
+    - Benefits:
+        - Compactly save objects to disk
+        - Quickly read objects from disk
+    
+
+```r
+testDF&lt;-data.frame(var1=c(1,2,3,4,5,6),
+                   var2=c(4,5,6,7,8,9),
+                   var3=c(11,9,7,5,3,1))
+write.csv(testDF, "C://Users/ellis/temporaryfolder/exampleSavedfile.csv")
+saveRDS(testDF, "C://Users/ellis/temporaryfolder/exampleSavedfile.RDS")
+```
+
 
 ---
 
-# Function Junction 2: Packages
+# The CRAN and Packages
 
-Functions I just showed you are built into R, but sometimes you need to do something more advanced. 
-you could:
+Functions I've shown are built into R, as in they are available from the time R is downloaded. Sometimes more advanced techniques are required.
+
+There are two options
   
-  - a) create by yourself the entire complex algorithm, have to debug when new versions of R come out, ensure consistency, spend more time making sure your function works as it should than using it
+  - a) create entire code sets and programs for complex algorithms, have to debug when new versions of R come out, ensure consistency, spend time making sure function works as it should than using it
   
   - b) copy someones code
 
@@ -370,72 +944,164 @@ More than likely, someone has created a package to do whatever you are trying to
 
 ---
 
-# Function Junction 2.2: Packages
+# The CRAN and Packages
+
+- R was built to be extensible by default and read libraries from the CRAN
+- install.packages
+
+- downloads and installs necessary code for immediate use
+--
+
+- to use non-base R functions
+  - library()
 
 
 ```r
-#install.package("ggplot2")
-library(ggplot2)
-ggplot(data.frame(x=c(1,2,3,4,5,6),
-                  y=c(4,5,6,7,8,9)))+
-  geom_point(
-    aes(x=x,y=y,
-        color=as.factor(x),
-        shape=as.factor(y)))+
-ggtitle("This is such a B-e-a-utiful plot")
+install.packages("tidyverse")
+library(tidyverse)
 ```
 
 ---
 
-# Function Junction 2.2: Packages
+#Visualization
 
-![](July_Presentation_files/figure-html/function_junction_packages_show_plot-1.png)&lt;!-- --&gt;
+- R has graphic generation abilities built in, but a large number of people in the community rely on the package "ggplot2"
+- There are arguments for both in terms of control and final product quality
+    - in the end, it is whichever makes the most sense to you
+    
+
+```r
+plot(data.frame(x=c(1,2,3,4,5,6),
+                y=c(4,5,6,7,8,9)))
+lines(x=c(1,2,3,4,5,5,6),y=c(5,7,8,9,7,6,6),col="red")
+```
+
+
+```r
+#install.packages("ggplot2")
+library(ggplot2)
+ggplot()+
+  geom_point(
+    data=data.frame(x=c(1,2,3,4,5,6),
+                  y=c(4,5,6,7,8,9)),
+    aes(x=x,y=y)+
+  geom_line(
+    data=data.frame(x=c(1,2,3,4,5,6),
+                  y=c(5,7,8,9,7,6,6)),
+    aes(x=x,y=y,color='Red'))
+```
+---
+#Visualization
+
+###ggplot2
+
+- Most of my graphics generation has been in ggplot2
+- The nice features of ggplot2 include
+    - layers graphics
+    - obvious which layers are on top
+    - easily add to ggplot to create different versions
+    - abstracts some of the less fun parts of graphic generation
+    - many geoms and scaling for logically generating your graphic
+
+--
+
+- install ggplot2 with install.packages("ggplot2")
+- load into environment with library(ggplot2)
 
 ---
+#Visualization
 
-# Getting Data into R
+###ggplot2
 
--That is all fine and dandy, but how do I get my data from a CSV or excel spreadsheet into my R session?? 
-  - Am I supposed to type it all in, that seems like a waste of time!
-  
--whole families of functions are written to import data into R!
-  - usually start with "read":
-    - base R has "read.table","read.csv","read.tsv", etc
-    - additional packages open up additional ways to read in files:
-        -openxlsx adds the "read.xlsx" function to read excel files
+- all plots start with "ggplot"
 
+```r
+gg&lt;-ggplot()
+
+OR
+
+gg&lt;-ggplot(data.frame(x=c(1,2,3,4,5,6),
+                  y=c(4,5,6,7,8,9)))
+```
+---
+#Visualization
+
+###ggplot2
+
+- add layers with '+'
+
+- layers are "geoms"
+    - how to plot the information 
+    - geom_point, geom_line, geom_path, geom_boxplot, geom_bar, geom_hist
+    
+- each geom uses the function "aes", which tell the layers what columns of the input data to use to plot
+    - inputs to aes change based on the geom
+    - to know what to use, type ?geom_XXX and read about its aethetics
+
+
+```r
+gg&lt;-ggplot(data.frame(Col_X=c(1,2,3,4,5,6),
+                  Col_Y=c(4,5,6,7,8,9)))+
+  geom_point(aes(x=Col_X,y=Col_Y))
+```
+---
+class: center
+
+![](July_Presentation_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+#Visualization
+
+###ggplot2
+
+- titles and labels can be added via ggtitle, xlab, ylab
+
+- Can be modified with "themes" as well
+    - ggplot2 comes with themes such as
+        - theme_bw, theme_minimal, etx
+    - there are packages that have additional themes
+        - "ggthemes" is one example
+    - theme function allows you to create your own themes
 
 
 
 ```r
-# download.file("https://raw.githubusercontent.com/fivethirtyeight/data/master/births/US_births_2000-2014_SSA.csv","US_births_2000-2014_SSA.csv",method = "libcurl")
+gg&lt;-ggplot(data.frame(Col_X=c(1,2,3,4,5,6),
+                  Col_Y=c(4,5,6,7,8,9)))+
+  geom_point(aes(x=Col_X,y=Col_Y))+
+  ggtitle("This is the Title")+
+  xlab("Sample X Label")+
+  ylab("Sample Y Label")+
+  theme_minimal()
+```
+---
+class: center
+![](July_Presentation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
+---
+
+This has been a crash course to hopefully give you some tools to start understanding how to read and write your own R code and start visualizing data. 
+
+The R world is massive, and there is always something new to learn. I will now go though an analysis and visualization of the data set I shared earlier.
+
+---
+
+# Tonights  Data Set!
+
+
+```r
 # read.csv reads in the csv file from our computer
 # we tell it that the file has a "header", and
 # to make all values that are not numeric, characters
-usBirths&lt;-read.csv("US_births_2000-2014_SSA.csv",
+usBirths&lt;-read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/births/US_births_2000-2014_SSA.csv",
                    header = TRUE,
                    stringsAsFactors = FALSE)
 ```
 
 ---
 
-# All about Analysis
+# Tonights Data Set
 
-
-```r
-head(usBirths)
-```
-
-```
-##   year month date_of_month day_of_week births
-## 1 2000     1             1           6   9083
-## 2 2000     1             2           7   8006
-## 3 2000     1             3           1  11363
-## 4 2000     1             4           2  13032
-## 5 2000     1             5           3  12558
-## 6 2000     1             6           4  12466
-```
 
 ```r
 str(usBirths)
@@ -450,103 +1116,152 @@ str(usBirths)
 ##  $ births       : int  9083 8006 11363 13032 12558 12466 12516 8934 7949 11668 ...
 ```
 
-
 ---
+# Tonights Data Set
 
-#TidyVerse &amp; TidyData
+### TidyVerse &amp; TidyData
+- Family of packages and family built to
+    - facilitate ease of use
+    - readability
+    
+- The core is the "pipe"-ing function
+    - %&gt;%
+    - from the 'magrittr' package
+    
+- the pipe sends the output of the function to the next function
+    - either to:
+        - the first argument
+        - use "." to specify which argument to send the output to
+        
+---
+# Tonights Data Set
 
-- Hadley Wickham's brainchild
-- makes reading and using functions very straight-forward
-
-- a series of packages that contain functions to make data handling easy and understandable
-- the core is the "pipe"-ing function = '%&gt;%'
-
-
-```r
-#install.packages("tidyverse")
-library(tidyverse)
-```
-
-```
-## -- Attaching packages ------------------------------------------------------------------------------------------------------------- tidyverse 1.2.1 --
-```
-
-```
-## v tibble  1.4.2     v purrr   0.2.4
-## v tidyr   0.8.1     v dplyr   0.7.5
-## v readr   1.1.1     v stringr 1.3.1
-## v tibble  1.4.2     v forcats 0.3.0
-```
-
-```
-## -- Conflicts ---------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
+### TidyVerse &amp; TidyData
 
 ```r
+suppressMessages(library(tidyverse))
+
 usBirths%&gt;%
-  str
+  head(n=5)
 ```
 
 ```
-## 'data.frame':	5479 obs. of  5 variables:
-##  $ year         : int  2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...
-##  $ month        : int  1 1 1 1 1 1 1 1 1 1 ...
-##  $ date_of_month: int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ day_of_week  : int  6 7 1 2 3 4 5 6 7 1 ...
-##  $ births       : int  9083 8006 11363 13032 12558 12466 12516 8934 7949 11668 ...
+##   year month date_of_month day_of_week births
+## 1 2000     1             1           6   9083
+## 2 2000     1             2           7   8006
+## 3 2000     1             3           1  11363
+## 4 2000     1             4           2  13032
+## 5 2000     1             5           3  12558
 ```
-
-Note that the output is identical to the original 'str(usBirths')
-
+      
 ---
 
-#Analysis Alley
+# Tonights Data Set - Analysis Time
 
-We will now start the actual analysis. I will explain every step of the way, but let me know if I go too fast!
+We will now start the actual analysis
 
-First, a hypothesis: There are more births on weekends than weekdays. 
+First, a hypothesis: There are more births at the end of the month.
+
+Generate summary statistics to confirm hypothesis
 
 
 ```r
-usBirths_weekend&lt;-usBirths%&gt;%
-  mutate(Weekend=day_of_week==1 | day_of_week==7)# this adds a column to the data
-
-head(usBirths_weekend)
+usBirths_day&lt;-usBirths%&gt;%
+  group_by(date_of_month)%&gt;%
+  summarise(BirthAverage=mean(births),
+            BirthMin=min(births),
+            BirthMax=max(births))
 ```
-
-```
-##   year month date_of_month day_of_week births Weekend
-## 1 2000     1             1           6   9083   FALSE
-## 2 2000     1             2           7   8006    TRUE
-## 3 2000     1             3           1  11363    TRUE
-## 4 2000     1             4           2  13032   FALSE
-## 5 2000     1             5           3  12558   FALSE
-## 6 2000     1             6           4  12466   FALSE
-```
-
 ---
 
-#Analysis Alley
-
-Great, you are on your way!
+# Tonights Data Set - Analysis Time
 
 
 ```r
-#could do:
-for(rowID)
+head(usBirths_day,n=5)
+```
 
-head(usBirths_weekend)
+```
+## # A tibble: 5 x 4
+##   date_of_month BirthAverage BirthMin BirthMax
+##           &lt;int&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1             1       11131.     6629    14627
+## 2             2       11280.     6540    14241
+## 3             3       11347.     6876    14814
+## 4             4       11138.     6721    14980
+## 5             5       11312.     6609    15440
+```
+
+```r
+tail(usBirths_day,n=5)
+```
+
+```
+## # A tibble: 5 x 4
+##   date_of_month BirthAverage BirthMin BirthMax
+##           &lt;int&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1            27       11308.     6871    15590
+## 2            28       11397.     6852    15555
+## 3            29       11355.     6713    14688
+## 4            30       11393.     6870    15645
+## 5            31       11075.     6735    14409
 ```
 
 ---
 
-Missing slides on additional analysis
+# Tonights Data Set - Analysis Time
+
+- Numbers are hard to visualize immediately
+- a box plot will show me the mean and ranges of all the dates easily
+
+
+
+```r
+ggplot(usBirths)+
+  geom_boxplot(aes(x=factor(date_of_month),y=births))+
+  ggtitle("Births by Date in Month")+
+  xlab("Date")+
+  ylab("Births")
+```
+---
+
+
+# Tonights Data Set - Analysis Time
+
+.center[
+![](July_Presentation_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+]
+---
+# Tonights Data Set 
+
+##Takeaways
+- It looks like there are more births on the 1st than the end of the month
+- Big drop in births on the 13th
+
+##Weaknesses
+  - only accounted for actual day in month, not normalized for length of the month
+
+##Future
+- look at week vs weekday
+- when in the year vs date
+- year over year trends
+
 
 ---
 
-In summary, thank you all so much for being here!
+Thank you all so much for being here!
+
+--
+
+Feel free to connect with me on
+
+- LinkedIn - linkedin.com/ellishughes
+- Twitter - @ellishughes
+- Github - github.com/thebioengineer
+
+To talk about ideas for future Seattle R User Meetup possibilities
+
+--
 
 .footnote[ This entire presentation was created in R/rmd using the package [Xaringan](https://github.com/yihui/xaringan) by Yihui Xie]
 
