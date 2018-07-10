@@ -17,55 +17,37 @@ class: center, middle, inverse, title-slide
 
 
 
-# Tonights Agenda
-
-- 7-7:15  - Setup
-
-- 7:15-8  - Intro To R and Visualization
-
-- 8-8:30  - Networking
-
-- 8:30 and beyond - Continue your conversations as you wish!
-
-.footnote[
-#### Thank you Axio Research for providing the space for our meetup today
-]
-
----
 # Tonights Goals
 
 - For those of you new to R:
-  - Learn some basics in R
-  - Be able to generate a Visualization
+  - Given a very high level introduction to R
+  - Get excited to learn more
   
 - For you intermediate to advanced Folk:
-  - Hopefully learn something new
-  - Re-learn something you thought you knew
-  - I promise to have more advanced topics in the future
+  - Flex those R skills, maybe try something new
   
   - Tonight's data set can be found [github.com/fivethirtyeight/data/blob/master/births/US_births_2000-2014_SSA.csv](http://www.github.com/fivethirtyeight/data/blob/master/births/US_births_2000-2014_SSA.csv)
+      - Come up with a visualization, and post to to Twitter, with link to your code
+      - Potentially see a technique you havent
 
-- Everyone
-    - Meet someone new
 
-- Start a more regular meetup schedule
+- Inspire the start of a more regular meetup schedule
 
 ---
 
-#Who am I?
+#Ellis Hughes
 .pull-left[
-###Ellis Hughes
-
-  - Statistical Genetics Programmer
-  
+- Statistical Genetics Programmer
       - 3.5 Years programming in R
-      - Created specialty and general packages that we use internally
-      - Support a team of biostatisticians working in Genetics
-    
-  - 2014 WSU Bioengineer Graduate
-  
-      - MATLAB was the language of choice
-      - Research in Head-Neck musculoskeletal models
+      - Create specialty and general R scripts that we use internally
+      - Support team of biostatisticians working in genetics
+      
+- Programming for 6 years
+      - MATLAB while performing research
+
+- Connect with Me:
+      - LinkedIn - linkedin.com/in/ellishughes
+      - Twitter - @ellis_hughes
 ]
 
 .pull-right[
@@ -79,74 +61,98 @@ class: center, middle, inverse, title-slide
 
 - To make things easier, download the RStudio IDE from Rstudio at : [https://www.rstudio.com/products/rstudio/download/#download](https://www.rstudio.com/products/rstudio/download/#download)
 
+--
+
+- Once everything is downloaded, open RStudio
+    - open a new script by either:
+        - cntrl+shift+n
+        - click the new script button
+        
+.center[![New](July_Presentation_files/New_Script.PNG)]
+    
+---
+
+#Programming
+
+- Programming is sending sets of instructions for your computer to complete
+- Instructions are sent to your computer one line at a time
+    - in R, a line is run by
+        - either cliking the "Run" button ![Run](July_Presentation_files/run_button.PNG)
+        - ctrl + enter
+
+- You can tell R to ignore a line using the "#" symbol
+
+```r
+#This is a comment
+this is not a comment and R will attempt to run it
+```
+   
+- Comments are useful because then you can write notes to yourself
+    - I suggest using them to take notes during this presentation in your new R script
 
 ---
 
 # Hello World
 
 ### What in the world is an R?
+
 - A statistical computing language, based off of S
-- Free and Open Source Software
+    - R. Gentleman and R. Ihaka, 1993
 
-- Has a massive and inclusive community driving the development of software based on R in a variety of fields
+- Has a large and active community
 
+- Incredibly flexible language
+    - Scripting
+    - Web Applications (Shiny)
+    - Reproducible Reports (Knitr)
+    - Presentations
+    
+- This entire presentation was created using R, Rmarkdown, and the package [Xaringan](https://github.com/yihui/xaringan)
 
-
-## Stop me if you have any questions!!
 
 ---
-# R
+# Object Oriented
 
-- "Object Oriented" language
-  - That means that everything in R is an object
-  - Everything has very specific properties and behaviors
+- Think of an object as a box
+   - it has a size and has specific contents
+   - it has specific properties and behaviors
+   
+- Object have properties known as "class"
+  - different box types
+    - can have different items
+    - speeds of delivery
   
-- An object type is also known as a "class"
-
+  
 
 ```r
-#Lowest Level Objects
 TRUE #LOGICALS (BOOLEAN) - a true or false value
-     # TRUE or FALSE
 
 1 # INTEGER - A number with no decimals
-  # 1,2,3,4,5
 
 1.1 # NUMERIC - A number with the ability to have decimals 
-    # 1.25, 3.14159, 95516501.1
 
 "HELLO WORLD" #CHARACTER (STRING) - words or numbers within quotes 
-    # "This is a character","42"
 ```
 
 ---
 
-# R
+# Variable Assignment
 
-- Value assignment to variables is done through '&lt;-'.
-- Variables are representations of the values you are assigning to them
-- Variable naming can take on any form
-    - No special characters other than '_' or '.'
-    - cannot start with a number
-    - There are coding standards that dictate proper variable naming (ie. Google R standards)
+- Value assignment to variables is done through '&lt;-'
+
+- To continue the box metaphore
+    - Like writing "kitchen stuff" on a box
 
 
 ```r
-#Lowest Level Objects
-LOGICAL&lt;-TRUE #TRUE or FALSE
-INTEGER&lt;-1 # A number with no decimals
-NUMERIC&lt;-1.1 # a number with the ability to have decimals
-CHARACTER&lt;-"HELLO WORLD" # words
+sampleObject&lt;-TRUE #TRUE or FALSE
 ```
 
-.footnote[You TRY:
-In your console, try creating an object named sampleObject, and assign the number 42 to it. then type 'sampleObject' into the console and press enter on your keyboard
-]
----
-class: middle, left
+###You try
+In your console, create an object named sampleObject, and assign the number 42 to it. then type 'sampleObject' into the console and press enter on your keyboard
 
-##You should have:
 
+--
 
 
 ```r
@@ -164,18 +170,19 @@ sampleObject
 
 ### The next object level up are
   - Vectors, Matrices and Data.frames
-      - Take extend the properties of the basic objects
-      - Stores what would be multiple objects to be stored in one variable
+      - Stores multiple low level objects as one
       
+  - Box Metaphore:
+      - More complicated boxes, that hold the smaller boxes within them
+
 ---
 
 ##Vector
 
 - Vectors hold other objects
-  - in a single Dimension
+  - in a single Dimension 
+    - think of a skinny box that can only one line of boxes
   - Objects with in the vector are of the same type
-    - Be one of the following:
-      - Logical, Integer, Numeric, or Character
   - created with the 'c' function
 
 
@@ -183,7 +190,7 @@ sampleObject
 VECTORS_LOGICAL&lt;-c(TRUE,TRUE,FALSE) 
 
 VECTORS_NUMERIC&lt;-c(1,2.5,3.14159267834)
-VECTORS_NUMERIC_SEQUENCE&lt;-c(1:10)
+VECTORS_NUMERIC_SEQUENCE&lt;-1:10
 
 VECTORS_CHARACTER&lt;-c("THIS","is","A","Character","Vector")
 ```
@@ -198,12 +205,20 @@ VECTORS_CHARACTER
 ```
 ## [1] "THIS"      "is"        "A"         "Character" "Vector"
 ```
+
 ---
 ##Vector
 
 ### Now You try:
 
 Create a vector with 5 entries, assign it to sampleVector, and print it out!
+
+.center[
+
+```r
+    name&lt;-c(...)
+```
+]
 
 --
 
@@ -221,27 +236,16 @@ sampleVector
 ---
 # Objects in Objects
 ##Matrix
-- expansion on the vector idea
+- Holds other objects in two dimensions
   - contents must all the same class as well,
-  - two dimensions
-    - think of an excel spread sheet
+  - think of an excel spread sheet or looking ar a wine rack
+  ![Wine_Rack](https://www.google.com/url?sa=i&amp;rct=j&amp;q=&amp;esrc=s&amp;source=images&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwi1y5W6hZXcAhWbHTQIHRrtBMsQjRx6BAgBEAU&amp;url=https%3A%2F%2Fwww.ebay.com%2Fitm%2F64-Bottle-Display-View-Wine-Rack-Kit-in-Premium-Redwood-Hand-Crafted-in-USA-%2F180837480006&amp;psig=AOvVaw0JJqBCrZJcBpV92fPawvUa&amp;ust=1531329589766218)
+  
 
 ```r
 MATRIX_LOGICAL&lt;-matrix(c(TRUE,TRUE,FALSE,FALSE,TRUE,TRUE),ncol=2)
 MATRIX_NUMERIC&lt;-matrix(c(1,2,3,4,5,6,7,8,9),ncol=3)
 MATRIX_CHARACTER&lt;-matrix(c("COLUMN","ONE","HERE","THIS IS","C","2"),ncol=2)
-```
-When you print a matrix, it looks like this:
-
-```r
-MATRIX_NUMERIC
-```
-
-```
-##      [,1] [,2] [,3]
-## [1,]    1    4    7
-## [2,]    2    5    8
-## [3,]    3    6    9
 ```
 ---
 # Objects in Objects
@@ -1047,7 +1051,7 @@ gg&lt;-ggplot(data.frame(Col_X=c(1,2,3,4,5,6),
 ---
 class: center
 
-![](July_Presentation_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](July_Presentation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ---
 #Visualization
@@ -1076,7 +1080,7 @@ gg&lt;-ggplot(data.frame(Col_X=c(1,2,3,4,5,6),
 ```
 ---
 class: center
-![](July_Presentation_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](July_Presentation_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -1229,7 +1233,7 @@ ggplot(usBirths)+
 # Tonights Data Set - Analysis Time
 
 .center[
-![](July_Presentation_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+![](July_Presentation_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 ]
 ---
 # Tonights Data Set 
@@ -1272,7 +1276,8 @@ To talk about ideas for future Seattle R User Meetup possibilities
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

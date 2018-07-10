@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1531244406941.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9C8B0220",
+    "lastKnownWriteTime" : 1531257383,
+    "last_content_update" : 1531257383237,
+    "path" : "~/Side Code/Seattle_R_User_Group/Meetup_Presentations/July_2018/July_Presentation_Short.Rmd",
+    "project_path" : "Meetup_Presentations/July_2018/July_Presentation_Short.Rmd",
+    "properties" : {
+        "chunk_output_type" : "console",
+        "cursorPosition" : "772,3",
+        "scrollLine" : "749"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
