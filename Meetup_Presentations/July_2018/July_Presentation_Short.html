@@ -24,11 +24,11 @@ class: center, middle, inverse, title-slide
   - Get excited to learn more
   
 - For you intermediate to advanced Folk:
-  - Flex those R skills, maybe try something new
-  
   - Tonight's data set can be found [github.com/fivethirtyeight/data/blob/master/births/US_births_2000-2014_SSA.csv](http://www.github.com/fivethirtyeight/data/blob/master/births/US_births_2000-2014_SSA.csv)
       - Come up with a visualization, and post to to Twitter, with link to your code
-      - Potentially see a technique you havent
+          - '#SeattleRUsers'
+      - Flex those R skills, maybe try something new
+      - Potentially see a technique you haven't used before
 
 
 - Inspire the start of a more regular meetup schedule
@@ -39,14 +39,14 @@ class: center, middle, inverse, title-slide
 .pull-left[
 - Statistical Genetics Programmer
       - 3.5 Years programming in R
-      - Create specialty and general R scripts that we use internally
+      - Create specialty and general R packages that we use internally
       - Support team of biostatisticians working in genetics
       
 - Programming for 6 years
       - MATLAB while performing research
 
 - Connect with Me:
-      - LinkedIn - linkedin.com/in/ellishughes
+      - linkedin.com/in/ellishughes
       - Twitter - @ellis_hughes
 ]
 
@@ -92,9 +92,7 @@ this is not a comment and R will attempt to run it
 
 ---
 
-# Hello World
-
-### What in the world is an R?
+#What in the world is an R?
 
 - A statistical computing language, based off of S
     - R. Gentleman and R. Ihaka, 1993
@@ -114,8 +112,8 @@ this is not a comment and R will attempt to run it
 # Object Oriented
 
 - Think of an object as a box
-   - it has a size and has specific contents
-   - it has specific properties and behaviors
+   - individually it has its own size and has specific contents
+   - There are types of boxes with specific properties and behaviors
    
 - Object have properties known as "class"
   - different box types
@@ -142,6 +140,7 @@ TRUE #LOGICALS (BOOLEAN) - a true or false value
 
 - To continue the box metaphore
     - Like writing "kitchen stuff" on a box
+    - you can change the name of the box, but the contents don't change
 
 
 ```r
@@ -181,7 +180,7 @@ sampleObject
 
 - Vectors hold other objects
   - in a single Dimension 
-    - think of a skinny box that can only one line of boxes
+    - think of a skinny box that can only hold a single line of boxes
   - Objects with in the vector are of the same type
   - created with the 'c' function
 
@@ -253,35 +252,6 @@ DATA_FRAME_MIX &lt;- data.frame(c(TRUE,TRUE,FALSE),
 ```
 
 ---
-## Data.frame
-
-### Now You try:
-
-Create a data.frame with 2 columns and 3 rows, assign it to sampleDF, and print it out!
-
-
-```r
-name&lt;-data.frame(Column1_contents,column2_contents,...)
-```
-
---
-
-#### Example:
-
-```r
-sampleDF&lt;-data.frame(c(TRUE,TRUE,FALSE),
-                     c(123,456,789))
-sampleDF
-```
-
-```
-##   c.TRUE..TRUE..FALSE. c.123..456..789.
-## 1                 TRUE              123
-## 2                 TRUE              456
-## 3                FALSE              789
-```
-
----
 # Objects in Objects
 
 ### Accessing Content
@@ -311,7 +281,7 @@ DATA_FRAME_MIX[1:2,]
 ---
 # Objects in Objects
 
-### Changing Content
+### Changing/Assigning Content
 - Assign new values to elements of vectors, matrices and data.frames is done with "&lt;-"
     - specify the element(s), rows, or columns you want to replace
     - use the assignment '&lt;-' with the new values
@@ -652,7 +622,7 @@ gg&lt;-ggplot(inputDF)+
 ---
 class: center
 
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 ---
 class: center
 ####Adding another Layer
@@ -665,7 +635,7 @@ ggplot(inputDF)+
   geom_line(aes(x=Col_Y,y=Col_X, color="red" ))
 ```
 
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 ---
 #Visualization
 
@@ -678,7 +648,6 @@ ggplot(inputDF)+
         - theme_bw, theme_minimal, etx
     - there are packages that have additional themes
         - "ggthemes" is one example
-    - theme function allows you to create your own themes
 
 
 
@@ -694,7 +663,7 @@ gg&lt;-ggplot(data.frame(Col_X=c(1,2,3,4,5,6),
 ```
 ---
 class: center
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -817,14 +786,14 @@ ggplot(usBirths)+
 # Tonights Data Set - Analysis Time
 
 .center[
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 ]
 ---
 
 # Tonights Data Set - Analysis Time - Insights
 
 .center[
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 ]
 
 ---
