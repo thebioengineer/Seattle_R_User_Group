@@ -624,7 +624,6 @@ class: center
 
 ![](July_Presentation_Short_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 ---
-class: center
 ####Adding another Layer
 
 ```r
@@ -634,8 +633,9 @@ ggplot(inputDF)+
   geom_point(aes(x=Col_X,y=Col_Y, color=factor(Col_X)))+
   geom_line(aes(x=Col_Y,y=Col_X, color="red" ))
 ```
-
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+.center[
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+]
 ---
 #Visualization
 
@@ -663,20 +663,26 @@ gg&lt;-ggplot(data.frame(Col_X=c(1,2,3,4,5,6),
 ```
 ---
 class: center
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
 
 ---
 
 This has been a crash course to hopefully give you some tools to start understanding how to read and write your own R code and start visualizing data. 
+
 --
+
 I had to skip details on a lot of what I covered to talk about everything tonight
 
 There are additional resources all over the internet. 
 
   - [**datacamp.com -Introduction to R**](https://www.datacamp.com/courses/free-introduction-to-r)
   - [udacity.com - Data Analysis with R](https://www.udacity.com/course/data-analysis-with-r--ud651)
+  
+  - [r-bloggers.com](https://www.r-bloggers.com/)
+  - [stackoverflow.com](https://stackoverflow.com/questions/tagged/r)
 
 --
+
 The R world is massive, and there is always something new to learn. I will now go though an analysis and visualization of the data set I shared earlier.
 
 ---
@@ -786,14 +792,14 @@ ggplot(usBirths)+
 # Tonights Data Set - Analysis Time
 
 .center[
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 ]
 ---
 
 # Tonights Data Set - Analysis Time - Insights
 
 .center[
-![](July_Presentation_Short_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+![](July_Presentation_Short_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
 ]
 
 ---

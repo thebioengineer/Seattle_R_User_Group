@@ -572,9 +572,8 @@ ggplot(inputDF)+
 
 ```
 ---
-class: center
 ####Adding another Layer
-```{r}
+```{r, eval = FALSE}
 library(ggplot2)
 
 ggplot(inputDF)+
@@ -582,6 +581,16 @@ ggplot(inputDF)+
   geom_line(aes(x=Col_Y,y=Col_X, color="red" ))
 
 ```
+.center[
+```{r, echo = FALSE}
+library(ggplot2)
+
+ggplot(inputDF)+
+  geom_point(aes(x=Col_X,y=Col_Y, color=factor(Col_X)))+
+  geom_line(aes(x=Col_Y,y=Col_X, color="red" ))
+
+```
+]
 ---
 #Visualization
 
@@ -625,15 +634,21 @@ ggplot(data.frame(Col_X=c(1,2,3,4,5,6),
 ---
 
 This has been a crash course to hopefully give you some tools to start understanding how to read and write your own R code and start visualizing data. 
+
 --
+
 I had to skip details on a lot of what I covered to talk about everything tonight
 
 There are additional resources all over the internet. 
 
   - [**datacamp.com -Introduction to R**](https://www.datacamp.com/courses/free-introduction-to-r)
   - [udacity.com - Data Analysis with R](https://www.udacity.com/course/data-analysis-with-r--ud651)
+  
+  - [r-bloggers.com](https://www.r-bloggers.com/)
+  - [stackoverflow.com](https://stackoverflow.com/questions/tagged/r)
 
 --
+
 The R world is massive, and there is always something new to learn. I will now go though an analysis and visualization of the data set I shared earlier.
 
 ---
